@@ -1,11 +1,32 @@
-var path = require('path');
+const path = require("path");
+const WebpackShellPlugin = require("webpack-shell-plugin");
 
 module.exports = {
-  mode: 'development',
-  entry: './src/app.js',
+  mode: "development",
+  entry: "./src/app.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js"
   },
+  watch: true,
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
+      }
+    ]
+  },
+  plugins: [
+    new WebpackShellPlugin({
+      onBuildEnd: ["npm run run:dev"]
+    })
+  ],
   target: "node"
 };
