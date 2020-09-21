@@ -1,16 +1,24 @@
 import express from "express";
 import dotenv from "dotenv"
 import { logger } from "./utils/logger"
+import process from "process"
 import requestLogger from "morgan"
-import morgan from "morgan";
+
 
 dotenv.config();
 
 const app = express();
 const port = 3000;
+const host = "0.0.0.0"
 
 
-app.use(morgan("tiny"))
+app.use(requestLogger("tiny"))
 app.get("/", (req, res) => res.send("Hello World!"));
 
-app.listen(port, () => logger.info(`App listening on port ${port}!`));
+const server = app.listen(port, host, () => logger.info(`App listening at ${host}:${port}!`));
+
+process.on("SIGTERM", () => {
+    server.close(() => {
+        console.log('Process terminated')
+    })
+})

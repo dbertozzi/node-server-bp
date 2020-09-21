@@ -21,7 +21,10 @@
     "build": "webpack --config webpack.config.prod.js",
     "start": "npm run build & node dist/bundle.js",
     "run:dev": "nodemon --watch dist dist/bundle.js",
-    "start:dev": "webpack --progress"
+    "start:dev": "webpack --progress",
+    "run:docker": "docker run --init --rm --publish 3000:3000 my-node-app",
+    "build:docker": "docker build -t my-node-app .",
+    "start:docker": "npm run build && npm run build:docker && npm run run:docker"
   },
   "repository": {
     "type": "git",
