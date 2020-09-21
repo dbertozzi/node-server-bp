@@ -4,7 +4,10 @@
   "description": "server for personal website",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "log4js": "^6.3.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -15,10 +18,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack --config webpack.config.prod.js",
     "start": "npm run build & node dist/bundle.js",
     "run:dev": "nodemon --watch dist dist/bundle.js",
-    "dev": "webpack"
+    "start:dev": "webpack --progress"
   },
   "repository": {
     "type": "git",
