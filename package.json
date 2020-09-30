@@ -21,7 +21,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.prod.js",
-    "start": "npm run build & node dist/bundle.js",
+    "start": "npm run build && node dist/bundle.js",
     "run:dev": "nodemon --watch dist dist/bundle.js",
     "start:dev": "webpack --progress",
     "start:compose": "webpack --progress --env.USING_COMPOSE=yes & docker-compose up",
