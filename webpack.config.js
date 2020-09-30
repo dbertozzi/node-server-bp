@@ -1,5 +1,6 @@
 const path = require("path");
 const WebpackShellPlugin = require("webpack-shell-plugin");
+require('dotenv').config()
 
 module.exports = {
   mode: "development",
@@ -23,10 +24,10 @@ module.exports = {
       }
     ]
   },
-  plugins: [
+  plugins: process.env.USING_COMPOSE === "yes" ? [
     new WebpackShellPlugin({
       onBuildEnd: ["npm run run:dev"]
     })
-  ],
+  ] : [],
   target: "node"
 };
