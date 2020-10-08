@@ -1,26 +1,20 @@
-# davidbertozzi-server
-a nodejs server for my personal website
+# my server boilerplate
+
+a nodejs server boilerplate
 
 ## setup
 
     `npm install`
 
-## development
-
-### without docker compose
-
-    ```npm run start:dev```
-
-### with docker compose
+## running the application
 
     ```npm run start:compose```
 
-## production
+## environment variables
 
-### without docker compose
+configure .env
 
-    ```npm start```
-
-### with docker compose
-
-    ```npm run start:docker```
+PGDATABASE -> database name
+PGUSER -> database username
+PGPASSWORD -> database password
+CONNECTION_URL -> database connection string

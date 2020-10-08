@@ -24,5 +24,10 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new WebpackShellPlugin({
+      onBuildEnd: ["npm run run:dev"],
+    }),
+  ],
   target: "node",
 };
