@@ -1,6 +1,6 @@
 import { User } from "./user.entity";
-import { getManager } from "typeorm";
-import { logger } from "../utils/logger";
+import { getConnection, getManager } from "typeorm";
+import { logger } from "../../utils/logger";
 type UserParams = { [key: string]: string };
 export const getOneUser = async (params: UserParams) => {
   try {
@@ -24,7 +24,7 @@ export const getManyUser = async (params: UserParams = {}) => {
 
 export const saveUser = async (params: UserParams) => {
   try {
-    const user = await getManager().save(User, params);
+    const user = await getConnection().getRepository(User).insert(params);
     return user;
   } catch (error) {
     logger.error("Error in saveUser.");
@@ -42,6 +42,18 @@ export const deleteUser = async (params: UserParams = {}) => {
       throw new Error("Expected to find one user to delete, found multiple.");
     }
     await getManager().delete(User, users[0]);
+  } catch (error) {
+    logger.error("Error in getUser.");
+    throw error;
+  }
+};
+
+export const deleteAllUser = async () => {
+  try {
+    const users = await getManager().find(User);
+    users.forEach(async (user) => {
+      await getManager().delete(User, user);
+    });
   } catch (error) {
     logger.error("Error in getUser.");
     throw error;

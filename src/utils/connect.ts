@@ -1,6 +1,6 @@
 import { createConnection, Connection } from "typeorm";
 import { logger } from "./logger";
-import { User } from "../resources/user.entity";
+import { User } from "../resources/user/user.entity";
 export const connect = () => {
   createConnection({
     type: "postgres",
