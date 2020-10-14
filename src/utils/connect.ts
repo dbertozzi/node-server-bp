@@ -1,14 +1,18 @@
 import { createConnection, Connection } from "typeorm";
-
+import { logger } from "./logger";
+import { User } from "../resources/user.entity";
 export const connect = () => {
   createConnection({
     type: "postgres",
     url: process.env.CONNECTION_URL,
+    entities: [User],
+    synchronize: process.env.NODE_ENV === "development",
   })
     .then((connection) => {
+      logger.info("DB connection successful.");
       return connection;
     })
     .catch((error) => {
-      console.log(error);
+      logger.info(error);
     });
 };

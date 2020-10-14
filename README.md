@@ -4,7 +4,7 @@ a nodejs server boilerplate
 
 ## setup
 
-    `npm install`
+install docker
 
 ## running the application
 
@@ -14,7 +14,13 @@ a nodejs server boilerplate
 
 configure .env
 
-PGDATABASE -> database name
-PGUSER -> database username
-PGPASSWORD -> database password
-CONNECTION_URL -> database connection string
+- PGDATABASE -> database name
+- PGUSER -> database username
+- PGPASSWORD -> database password
+- CONNECTION_URL -> database connection string
+
+## test the api
+
+curl http://0.0.0.0:3000/user
+
+curl -H "Content-Type: application/json" --request POST --data "@src/tests/postUser.json" http://0.0.0.0:3000/user

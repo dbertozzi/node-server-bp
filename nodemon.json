@@ -1,4 +1,3 @@
 {
-  "watch": ["bundle.js", "dist/"],
-  "delay": "2500"
+  "watch": ["bundle.js", "dist/"]
 }
