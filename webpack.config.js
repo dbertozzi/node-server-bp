@@ -1,4 +1,5 @@
 const path = require("path");
+const WebpackShellPlugin = require("webpack-shell-plugin");
 require("dotenv").config();
 
 module.exports = {
@@ -22,5 +23,10 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
+  plugins: [
+    new WebpackShellPlugin({
+      onBuildEnd: ["npm run run:dev"],
+    }),
+  ],
   target: "node",
 };

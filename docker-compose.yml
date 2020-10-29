@@ -1,15 +1,15 @@
 version: "3"
 services:
   web:
+    environment:
+      - NODE_ENV=production
     build:
       context: .
       dockerfile: dev.Dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - .:/home/david/davidbertozzi-server
-      - /home/david/davidbertozzi-server/node_modules
-      - /home/david/davidbertozzi-server/src
+      - ./src:/home/node/code/src
     links:
       - db
 
